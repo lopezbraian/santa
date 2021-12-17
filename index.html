@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dani P</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="main" id="main"></main>
+    <script>
+      const image1 = "./grinch.gif";
+      const image2 = "./santa.gif";
+      const image3 = "./santa2.gif";
+      const image4 = "./tree.gif";
+
+      const main = document.getElementById("main");
+
+      function generateCard(image, index, id) {
+        return `
+        <div  class="card-box" onclick="turn(event, ${index} , ${id})">
+          <div id="card-${id}" class="card">
+            <div class="face">
+              <img
+                src="cardimage.jpg"
+                width="200"
+                height="250px"
+              />
+            </div>
+            <div class="face back">
+              <img
+                src="${image}"
+                width="200"
+                height="250px"
+              />
+            </div>
+          </div>
+        </div>
+        `;
+      }
+
+      const arrayCard = [
+        generateCard(image2, 2, 2),
+        generateCard(image3, 3, 3),
+        generateCard(image4, 4, 4),
+        generateCard(image3, 3, 5),
+        generateCard(image2, 2, 6),
+        generateCard(image1, 1, 7),
+        generateCard(image4, 4, 8),
+      ];
+
+      let prevOpen = 0;
+      let actOpen = 0;
+
+      let prevId = 0;
+      let actuId = 0;
+
+      let str = "";
+
+      const cantMatch = 0;
+
+      arrayCard.forEach((element) => {
+        str += element;
+      });
+      main.innerHTML =
+        str +
+        `<div id="absolute-screen">
+        <img src="happy.jpg" alt="" srcset="">
+      </div>`;
+
+      function turn(event, index, id) {
+        actOpen = prevOpen;
+
+        if (prevId !== 0) {
+          document.getElementById(`card-${prevId}`).style.transform =
+            "rotateY(0deg)";
+        }
+
+        document.getElementById(`card-${id}`).style.transform =
+          "rotateY(180deg)";
+
+        prevOpen = index;
+        prevId = id;
+        if (id === 7) {
+          document.getElementById('absolute-screen').style.display="flex"
+        }
+      }
+    </script>
+  </body>
+</html>

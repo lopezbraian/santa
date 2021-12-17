@@ -1,0 +1,48 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.card-box {
+  width: 200px;
+  height: 250px;
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transition: all 0.5s linear;
+}
+
+.face {
+  position: absolute;
+  backface-visibility: hidden;
+}
+.face.back img {
+  object-fit: cover;
+}
+
+.face.back {
+  transform: rotateY(180deg);
+  outline: 1px solid black;
+  border-radius: 10px;
+}
+
+.rotate:hover .card {
+  transform: rotateY(180deg);
+}
+
+#absolute-screen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.opacity {
+  opacity: 0.4;
+}
